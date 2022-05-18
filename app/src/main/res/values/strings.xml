@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Transaction Tracker</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="transaction_description">Transaction Description</string>
+    <string name="add">Add</string>
+    <string name="expenses">Expenses</string>
+    <string name="income">Income</string>
+    <string name="balance">Balance</string>
+    <string name="_0">$0</string>
+    <string name="toast_msg">Please fill all the required fields.</string>
+</resources>
