@@ -1,25 +1,25 @@
-package com.example.transactiontracker.ui.main.view.activity
+package com.example.transactiontracker.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.transactiontracker.data.model.BalanceModel
 import com.example.transactiontracker.databinding.ActivityMainBinding
-import com.example.transactiontracker.ui.base.ViewModelFactory
-import com.example.transactiontracker.ui.main.view.adapter.TransactionAdapter
-import com.example.transactiontracker.ui.main.viewmodel.MainViewModel
+import com.example.transactiontracker.ui.view.adapter.TransactionAdapter
+import com.example.transactiontracker.ui.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val TAG = "Transaction_Fragment"
+
     private var transactionAdapter = TransactionAdapter()
 
-    private val viewModel by lazy {
-        ViewModelProvider(this, ViewModelFactory(this.application)).get(MainViewModel::class.java)
-    }
+    private val viewModel : MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,4 @@
-package com.example.transactiontracker.ui.main.view.activity
+package com.example.transactiontracker.ui.view.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.example.transactiontracker.R
 import com.example.transactiontracker.databinding.FragmentAddTransactionBinding
-import com.example.transactiontracker.ui.base.ViewModelFactory
-import com.example.transactiontracker.ui.main.viewmodel.MainViewModel
+import com.example.transactiontracker.ui.viewmodel.MainViewModel
 import com.example.transactiontracker.utils.Constant.Companion.SPINNER_DEFAULT
 import com.example.transactiontracker.utils.Constant.Companion.SPINNER_EXPENSE
 import com.example.transactiontracker.utils.Constant.Companion.SPINNER_INCOME
@@ -23,11 +22,7 @@ class TransactionDialog : DialogFragment(), AdapterView.OnItemSelectedListener {
     private lateinit var transactionType : String
     private val itemList = arrayOf(SPINNER_DEFAULT, SPINNER_EXPENSE, SPINNER_INCOME)
 
-    private val viewModel by lazy {
-        ViewModelProvider(requireActivity(),
-            ViewModelFactory(requireActivity().application)
-        ).get(MainViewModel::class.java)
-    }
+    private val viewModel : MainViewModel by activityViewModels()
 
     companion object {
         fun newInstance() : TransactionDialog {

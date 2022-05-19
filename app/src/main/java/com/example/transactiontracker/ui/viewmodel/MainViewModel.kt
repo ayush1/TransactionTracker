@@ -1,21 +1,23 @@
-package com.example.transactiontracker.ui.main.viewmodel
+package com.example.transactiontracker.ui.viewmodel
 
-import android.app.Application
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.transactiontracker.data.db.entity.Transaction
 import com.example.transactiontracker.data.model.BalanceModel
 import com.example.transactiontracker.data.model.TransactionModel
 import com.example.transactiontracker.data.repository.MainRepository
-import com.example.transactiontracker.ui.main.view.builder.AddTransaction
+import com.example.transactiontracker.ui.view.builder.AddTransaction
 import com.example.transactiontracker.utils.Constant.Companion.SPINNER_EXPENSE
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class MainViewModel(context: Application) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository : MainRepository) : ViewModel() {
 
     private val transactionMapping : HashMap<String, ArrayList<TransactionModel>> = HashMap()
     private val allTransactionList : ArrayList<TransactionModel> = ArrayList()
@@ -26,10 +28,6 @@ class MainViewModel(context: Application) : ViewModel() {
 
     var transactionLiveData : MutableLiveData<ArrayList<TransactionModel>> = MutableLiveData()
     var balanceLiveData : MutableLiveData<BalanceModel> = MutableLiveData()
-
-    private val repository by lazy {
-        MainRepository(context)
-    }
 
     init {
         val calendar: Calendar = Calendar.getInstance()
@@ -74,7 +72,6 @@ class MainViewModel(context: Application) : ViewModel() {
         repository.updateBalanceInDb(balanceModel)
      }
 
-    @VisibleForTesting
     private fun calculateBalance(transactionModel: TransactionModel, isDelete : Boolean = false) {
         if(transactionModel.transactionType.equals(SPINNER_EXPENSE))
             if(!isDelete) this.expense += transactionModel.transactionValue else this.expense -= transactionModel.transactionValue

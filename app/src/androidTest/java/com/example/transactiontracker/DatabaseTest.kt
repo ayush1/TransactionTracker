@@ -56,4 +56,16 @@ class DatabaseTest : TestCase() {
         val balance = balanceDao.getBalance()
         assertThat(balance?.expense?.equals(entityBalance.expense))
     }
+
+    @Test
+    fun deleteTransaction() : Unit = runBlocking {
+        val transaction = Transaction(0, "expenses",
+            "coffee","$20", "2022-05-15")
+        transactionDao.insert(transaction)
+        val transactions = transactionDao.getAll()
+        assertThat(transactions.contains(transaction))
+        transactionDao.delete("expenses", "coffee", "$20")
+        val latestTransactions = transactionDao.getAll()
+        assertThat(!transactions.contains(transaction))
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.transactiontracker.ui.main.view.builder
+package com.example.transactiontracker.ui.view.builder
 
 import com.example.transactiontracker.data.model.TransactionModel
 

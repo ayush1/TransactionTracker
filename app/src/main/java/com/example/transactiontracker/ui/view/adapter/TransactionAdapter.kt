@@ -1,4 +1,4 @@
-package com.example.transactiontracker.ui.main.view.adapter
+package com.example.transactiontracker.ui.view.adapter
 
 import android.graphics.Typeface
 import android.view.LayoutInflater

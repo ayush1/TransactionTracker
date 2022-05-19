@@ -1,4 +1,4 @@
-package com.example.transactiontracker.ui.main.view.adapter
+package com.example.transactiontracker.ui.view.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.transactiontracker.data.model.TransactionModel

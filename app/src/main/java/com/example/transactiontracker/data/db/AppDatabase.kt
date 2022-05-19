@@ -16,7 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun transactionDao() : TransactionDao
     abstract fun balanceDao() : BalanceDao
 
-    companion object{
+    /*companion object{
         private var INSTANCE: AppDatabase? = null
 
         fun getDatabase(context: Context): AppDatabase =
@@ -27,5 +27,5 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase = Room.databaseBuilder(context.applicationContext,
             AppDatabase::class.java, DB_NAME).build()
-    }
+    }*/
 }
